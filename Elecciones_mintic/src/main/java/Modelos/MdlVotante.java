@@ -3,13 +3,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Modelos;
-import Clases.ClsCandidato;
 import Clases.ClsJdbc;
 import Clases.ClsMensaje;
 import Clases.ClsVotante;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.LinkedList;
+import javax.swing.JOptionPane;
 
 
 
@@ -21,7 +21,7 @@ public class MdlVotante {
     
         ClsJdbc jdbc;
     
-    //MdlCandidato modelocandidato;
+   
 
     public MdlVotante() {
         this.jdbc = new ClsJdbc();
@@ -33,33 +33,37 @@ public class MdlVotante {
         ClsMensaje mensaje;
 
         try {
-            String sql = "INSERT INTO tbl_registro_votante VALUES (?,?,?,?,?,?,?,?)";
+            String sql = "INSERT INTO tbl_registro_votante VALUES (?,?,?,?,?,?,?)";
             PreparedStatement sentencia = this.jdbc.conexio.prepareStatement(sql);
             sentencia.setString(1, votante.getCedula());
             sentencia.setString(2, votante.getNombre());
             sentencia.setString(3, votante.getTelefono());
+            sentencia.setString(4, votante.getCorreo());
+            sentencia.setString(5, votante.getCiudad());
+            sentencia.setString(6, votante.getCotrasena());
+            sentencia.setInt(7, votante.getEstado());
 
 
             int resultado = sentencia.executeUpdate();
 
             if (resultado >= 1) {
-
-                mensaje = new ClsMensaje(ClsMensaje.OK, "Has creado un cadidato exitosamente");
-                return mensaje;
+                JOptionPane.showMessageDialog(null, "Votante agregado con exito");
+                return null;
             }
+            return null;
 
-            mensaje = new ClsMensaje(ClsMensaje.ERROR, "Uy ocurrió un error");
-            return mensaje;
+
 
         } catch (Exception excepcion) {
-
-            mensaje = new ClsMensaje(ClsMensaje.ERROR, "Uy ocurrió un error: " + excepcion.getMessage());
-            return mensaje;
-        }
+            
+            JOptionPane.showMessageDialog(null, "Uy ocurrió un error: " + excepcion.getMessage());
+           
+           return null;
+              }
 
     }
-    
-    public LinkedList <ClsVotante> llamarcandidato (){    
+ /**   
+    public LinkedList <ClsVotante> llamarVotante (){    
         try{
                 LinkedList <ClsVotante> lista = new LinkedList<>();
                 String cosulta = "SELECT * FROM tbl_registro_votante";
@@ -86,48 +90,14 @@ public class MdlVotante {
         catch (Exception e){
                 return null;
         }
-    }   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    /**
-    public ClsMensaje eliminarVotante(String id) {
+    }
+        
+     public ClsMensaje eliminarVotante(String id) {
 
         ClsMensaje mensaje;
 
         try {
-            String sql = "DELETE FROM tbl_registro_candidato WHERE tipo_cedula = ?";
+            String sql = "DELETE FROM tbl_registro_votante WHERE tipo_cedula = ?";
             
             
             PreparedStatement sentencia = this.jdbc.conexio.prepareStatement(sql);
@@ -150,10 +120,8 @@ public class MdlVotante {
             return mensaje;
         }
 
-    }
-    **/
+    } 
+    * **/
     
+}   
     
-    
-    
-}

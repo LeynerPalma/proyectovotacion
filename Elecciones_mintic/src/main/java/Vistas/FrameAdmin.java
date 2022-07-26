@@ -4,8 +4,11 @@
  */
 package Vistas;
 
+import Clases.ClsAdmin;
+import Controladores.CtlAdmin;
 import javax.swing.JFrame;
-
+import java.util.LinkedList;
+import javax.swing.JOptionPane;
 /**
  *
  * @author leine
@@ -13,6 +16,8 @@ import javax.swing.JFrame;
 public class FrameAdmin extends javax.swing.JFrame {
         JFrame FrameVotante;
         JFrame FrameMenu;
+        CtlAdmin controladorAdmin;
+        LinkedList<ClsAdmin> listaAdmin;
     
     /**
      * Creates new form FrameAdmin
@@ -20,6 +25,8 @@ public class FrameAdmin extends javax.swing.JFrame {
     public FrameAdmin(JFrame FrameMenu) {
         initComponents();
         this.FrameMenu =  FrameMenu;
+        this.controladorAdmin = new CtlAdmin();
+        this.llamarAdmin();
     }
 
     /**
@@ -62,6 +69,11 @@ public class FrameAdmin extends javax.swing.JFrame {
         });
 
         ingresarAdmin.setText("Ingresar");
+        ingresarAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresarAdminActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Times New Roman", 3, 18)); // NOI18N
         jLabel4.setText("Ingreso administrativo");
@@ -162,6 +174,36 @@ public class FrameAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_contrasenaAdmiActionPerformed
 
+   
+    
+    private void ingresarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarAdminActionPerformed
+      String usuario = this.userAdmin.getText();
+      String contrasena = String.valueOf(contrasenaAdmi.getPassword());
+      
+      ClsAdmin admin = new ClsAdmin(usuario, contrasena);
+      
+        for(ClsAdmin i: listaAdmin){
+            
+            
+        if(usuario.equals("")){
+      
+            }
+      }
+      
+
+        
+
+
+
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_ingresarAdminActionPerformed
+
+    public void llamarAdmin(){
+        this.listaAdmin = this.controladorAdmin.llamarAdmin();
+    } 
+    
+    
     /**
      * @param args the command line arguments
      */

@@ -5,7 +5,7 @@
 package Controladores;
 
 
-import Clases.ClsVotante;
+
 import Clases.ClsCandidato;
 import Clases.ClsMensaje;
 import  Modelos.MdlCandidato;
@@ -34,20 +34,7 @@ public class CtlCandidato {
     }
     
     
-     public ClsMensaje eliminarCandidato(String id){
-        
-        
-        ClsMensaje mensaje = this.modelocandidato.eliminarCandidato(id);
-        
-        return mensaje;
-    }
-       
-     //public ClsMensaje actualizarCandidato(ClsCandidato candidato) {
 
-        //ClsMensaje mensaje = this.modeloCandidato.actualizarCandidato(candidato);
-
-        //return mensaje;
-    //}
     
     
     

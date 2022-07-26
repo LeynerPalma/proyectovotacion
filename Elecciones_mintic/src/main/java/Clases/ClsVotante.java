@@ -16,7 +16,7 @@ public class ClsVotante extends ClsPersona{
     private int estado;
     private String cotrasena;
 
-    public ClsVotante(String nombre, String cedula,String telefono,String correo,String cotrasena, String ciudad,int estado ) {
+    public ClsVotante(String cedula,String nombre, String telefono,String correo,String ciudad,String cotrasena, int estado ) {
         super(cedula, nombre, telefono, ciudad);
         this.correo = correo;
         this.estado = estado;

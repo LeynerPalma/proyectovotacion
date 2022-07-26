@@ -62,14 +62,12 @@
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="ingresoAdmin" alignment="0" pref="185" max="32767" attributes="0"/>
-                                  <Component id="resultadoEleccion" alignment="0" max="32767" attributes="0"/>
-                              </Group>
-                              <Component id="botonCandidato" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                              <Component id="Votar" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
-                              <Component id="registrarVotante" alignment="0" min="-2" pref="185" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="botonCandidato" alignment="0" pref="185" max="32767" attributes="0"/>
+                              <Component id="Votar" alignment="0" pref="185" max="32767" attributes="0"/>
+                              <Component id="registrarVotante" alignment="0" pref="185" max="32767" attributes="0"/>
+                              <Component id="resultadoEleccion" alignment="0" max="32767" attributes="0"/>
+                              <Component id="ingresoAdmin" alignment="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jPanel2" min="-2" max="-2" attributes="0"/>

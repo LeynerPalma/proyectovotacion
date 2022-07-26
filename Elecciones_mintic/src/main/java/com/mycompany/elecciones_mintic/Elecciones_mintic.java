@@ -6,6 +6,8 @@
 package com.mycompany.elecciones_mintic;
 
 import Clases.ClsJdbc;
+import Vistas.FrameMenu;
+import javax.crypto.AEADBadTagException;
 
 /**
  *
@@ -13,11 +15,12 @@ import Clases.ClsJdbc;
  */
 public class Elecciones_mintic {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-        
+    public static void main(String[] args) {      
         ClsJdbc jdbc = new ClsJdbc();
         jdbc.crearConexion();
         
+        FrameMenu menu = new FrameMenu();
+        menu.setLocationRelativeTo(menu);
+        menu.setVisible(true);        
     }
 }

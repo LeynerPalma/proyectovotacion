@@ -14,17 +14,19 @@ import javax.swing.JOptionPane;
  * @author leine
  */
 public class FrameAdmin extends javax.swing.JFrame {
-        JFrame FrameVotante;
+        //JFrame FrameVotante;
         JFrame FrameMenu;
+        JFrame FrameElecciones;
         CtlAdmin controladorAdmin;
         LinkedList<ClsAdmin> listaAdmin;
     
     /**
      * Creates new form FrameAdmin
      */
-    public FrameAdmin(JFrame FrameMenu) {
+    public FrameAdmin(JFrame FrameMenu,JFrame FrameElecciones) {
         initComponents();
         this.FrameMenu =  FrameMenu;
+        this.FrameElecciones = FrameElecciones;
         this.controladorAdmin = new CtlAdmin();
         this.llamarAdmin();
     }
@@ -41,14 +43,14 @@ public class FrameAdmin extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         img_registraduria = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        userAdmin = new javax.swing.JTextPane();
         cancelarAdmin = new javax.swing.JButton();
         ingresarAdmin = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         errorVotanteLogin = new javax.swing.JLabel();
         contrasenaAdmi = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        userAdmin = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,8 +60,6 @@ public class FrameAdmin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel1.setText("Ingrese su usuario");
-
-        jScrollPane1.setViewportView(userAdmin);
 
         cancelarAdmin.setText("Cancelar");
         cancelarAdmin.addActionListener(new java.awt.event.ActionListener() {
@@ -90,6 +90,8 @@ public class FrameAdmin extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel3.setText("Ingrese su contraseña");
 
+        jScrollPane2.setViewportView(userAdmin);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -113,11 +115,11 @@ public class FrameAdmin extends javax.swing.JFrame {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(cancelarAdmin, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(contrasenaAdmi, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(contrasenaAdmi, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 258, Short.MAX_VALUE)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)))
                 .addGap(0, 57, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(100, Short.MAX_VALUE)
                 .addComponent(jLabel4)
                 .addGap(103, 103, 103))
         );
@@ -131,7 +133,7 @@ public class FrameAdmin extends javax.swing.JFrame {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
                 .addGap(11, 11, 11)
@@ -174,34 +176,39 @@ public class FrameAdmin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_contrasenaAdmiActionPerformed
 
-   
+       public void llamarAdmin(){
+        this.listaAdmin = this.controladorAdmin.llamarAdmin();
+    } 
     
     private void ingresarAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresarAdminActionPerformed
-      String usuario = this.userAdmin.getText();
-      String contrasena = String.valueOf(contrasenaAdmi.getPassword());
       
-      ClsAdmin admin = new ClsAdmin(usuario, contrasena);
+        String usuario = this.userAdmin.getText();
+        String contrasena = String.valueOf(contrasenaAdmi.getPassword());
       
-        for(ClsAdmin i: listaAdmin){
-            
-            
-        if(usuario.equals("")){
+      //ClsAdmin admin = new ClsAdmin(usuario, contrasena);
       
-            }
-      }
-      
-
-        
-
-
-
+    
+       for(ClsAdmin i : this.listaAdmin){
+           if (usuario.equals(i.getUser())){
+               if (contrasena.equals(i.getContrasena())){
+                   JOptionPane.showMessageDialog(null,"ok");
+                   this.FrameMenu.setVisible(true);
+                   this.dispose();
+                   return ;
+               }
+           }
+           else{
+               JOptionPane.showMessageDialog(null,"Usuario o contraseña incorrecta");
+           }
+           
+           
+           
+       }
 
 // TODO add your handling code here:
     }//GEN-LAST:event_ingresarAdminActionPerformed
 
-    public void llamarAdmin(){
-        this.listaAdmin = this.controladorAdmin.llamarAdmin();
-    } 
+
     
     
     /**
@@ -234,7 +241,7 @@ public class FrameAdmin extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new FrameAdmin(null).setVisible(true);
+                new FrameAdmin(null,null).setVisible(true);
             }
         });
     }
@@ -249,7 +256,7 @@ public class FrameAdmin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane userAdmin;
     // End of variables declaration//GEN-END:variables
 }

@@ -17,6 +17,7 @@ public class FrameMenu extends javax.swing.JFrame {
     FrameVotante Frame_Votante;
     FrameLoginVotar Frame_Login_Votar;
     FrameAdmin Frame_Admin;
+    FrameElecciones Frame_Elecciones;
     
     
     
@@ -28,7 +29,7 @@ public class FrameMenu extends javax.swing.JFrame {
         this.Frame_Votante = new FrameVotante(this);
         this.Frame_Candidato = new FrameCandidato(this);
         this.Frame_Login_Votar = new FrameLoginVotar(this,Frame_Votante);
-        this.Frame_Admin = new FrameAdmin(this);
+        this.Frame_Admin = new FrameAdmin(this,Frame_Elecciones);
         
         
         

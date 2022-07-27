@@ -16,10 +16,18 @@ import java.util.LinkedList;
 public class MdlAdmin {
       ClsJdbc jdbc;
        
-
+    public MdlAdmin() {
+        this.jdbc = new ClsJdbc();
+        this.jdbc.crearConexion();
+    }
+      
+      
+      
+      
+      
          public LinkedList <ClsAdmin> llamarAdmin (){    
                 try{
-                        LinkedList <ClsAdmin> listaAdmin = new LinkedList<>();
+                        LinkedList <ClsAdmin> lista = new LinkedList<>();
                         String cosulta = "SELECT * FROM tbl_user_admin";
                         PreparedStatement sentencia = this.jdbc.conexio.prepareStatement(cosulta);
                         ResultSet  resultado = sentencia.executeQuery();
@@ -31,10 +39,10 @@ public class MdlAdmin {
 
                                 ClsAdmin admin = new ClsAdmin(user, contrasena);
 
-                                listaAdmin. add(admin);
+                                lista. add(admin);
                         }
 
-                        return  listaAdmin;    
+                        return  lista;    
                 }  
                 catch (Exception e){
                         return null;
